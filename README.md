@@ -9,6 +9,10 @@ $ docker-compose up -d
 $ make setup-centraldogma
 ```
 
+## Central Dogma Web UI
+
+http://localhost:36462/
+
 ## How to Dispose
 
 ```
