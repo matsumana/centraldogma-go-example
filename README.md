@@ -1,6 +1,6 @@
 # centraldogma-go-example
 
-## How to Setup Central Dogma
+## How to setup Central Dogma
 
 ```
 $ docker-compose up -d
@@ -13,7 +13,7 @@ $ make setup-centraldogma
 
 http://localhost:36462/
 
-## How to Dispose
+## How to dispose
 
 ```
 $ docker-compose down
