@@ -6,28 +6,28 @@ import (
 	"fmt"
 )
 
-type configFromCentralDogma struct {
+type fetchedData struct {
 	Greeting string `json:"greeting"`
 }
 
-// Watch Central Dogma file
-func Watch(callback func(string)) error {
+// WatchFile watch file
+func WatchFile(path string, callback func(string)) error {
 	dogmaFile := &CentralDogmaFile{
-		Token:      "anonymous", // In Central Dogma Docker image, authentication is disabled so need to use anonymous token.
+		Token:      "anonymous", // In Central Dogma Docker image, need to use 'anonymous' because authentication is disabled
 		BaseURL:    "http://localhost:36462",
 		Project:    "fukuoka-go",
 		Repo:       "demo",
-		Path:       "/config.json",
+		Path:       path,
 		TimeoutSec: 30,
 	}
 
 	err := dogmaFile.Watch(context.Background(), func(bytes []byte) {
-		config := new(configFromCentralDogma)
-		if err := json.Unmarshal(bytes, config); err != nil {
+		data := new(fetchedData)
+		if err := json.Unmarshal(bytes, data); err != nil {
 			panic(err)
 		}
 
-		greeting := config.Greeting
+		greeting := data.Greeting
 		fmt.Printf("Fetched from Central Dogma: %s\n", greeting)
 
 		callback(greeting)

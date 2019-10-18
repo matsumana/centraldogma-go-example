@@ -10,7 +10,7 @@ import (
 var greeting string
 
 func main() {
-	err := dogma.Watch(func(data string) {
+	err := dogma.WatchFile("/config.json", func(data string) {
 		greeting = data
 	})
 	if err != nil {
